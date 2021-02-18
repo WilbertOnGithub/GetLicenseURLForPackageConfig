@@ -67,11 +67,14 @@ foreach ($line in $packages)
 
         $licenceurl = $json.items[$count].catalogEntry.licenseUrl
     }
-    if ([string]::IsNullOrEmpty($licenceurl))
+    if ($licenceurl -eq "")
     {
         $hashtable[$line] = "Unknown license"
     }
-    $hashtable[$line] = $licenceurl
+    else 
+    {
+        $hashtable[$line] = $licenceurl        
+    }
 }
 
 foreach ($h in $hashtable.GetEnumerator()) {
